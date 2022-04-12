@@ -103,31 +103,6 @@ async function main() {
               'collectionSlug': asset_events[i].collection_slug,
               'collectionAddress': asset_events[i].contract_address
           });
-
-          // create buy orders
-          //get collection details
-          const response1 = await axios({
-              method: 'get',
-              url: process.env.OPENSEA_MAINNET_API_URL +'v1/collection/'+ asset_events[i].collection_slug,  // example:- azuki-god
-          });
-
-          console.log("response1: ", response1);
-          if (response1.data && response1.data.collection) {
-              const collection = response1.data.collection;
-              for (var j = 0; j < 20; j++) {
-                  assets.push({tokenId: i, tokenAddress: collection.primary_asset_contracts[0].address});
-              }
-
-              console.log("assets: ", assets);
-              //multiple tokens buy orders
-              // const offer = await seaport.createBundleBuyOrder({
-              //     assets,
-              //     accountAddress: OWNER_ADDRESS,
-              //     0.04,
-              //     // Optional expiration time for the order, in Unix time (seconds):
-              //     // expirationTime: Math.round(Date.now() / 1000 + 60 * 60 * 24) // One day from now
-              // });
-          }
           break;
         }
       } // for end
